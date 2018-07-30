@@ -24,10 +24,18 @@ export function bubbleSort(arr, ascending = true) {
     return arr;
 }
 
+<<<<<<< HEAD
 export function recursiveBubbleSort(arr, len = arr.length, ascending = true) {
 
     if (len == 1){
         return ;
+=======
+export function recursiveBubbleSort(arr, n , ascending = true) {
+    let len = n !== void 0 ? n: arr.length;
+
+    if (len == 1){
+        return
+>>>>>>> ff92c372218ab35bd9f129cbccf87a6c295eddb2
     }
 
     for (let i = 0; i < len - 1; i++){
@@ -46,9 +54,13 @@ export function recursiveBubbleSort(arr, len = arr.length, ascending = true) {
         }
     }
 
+<<<<<<< HEAD
     recursiveBubbleSort(arr, len-1, ascending);
     return arr;
 
+=======
+    recursiveBubbleSort(arr, n-1)
+>>>>>>> ff92c372218ab35bd9f129cbccf87a6c295eddb2
 }
 
 // selection sort
@@ -84,6 +96,7 @@ export function selectionSort(arr, ascending){
 
 // insertion sort
 export function insertionSort(arr) {
+<<<<<<< HEAD
     let len = arr.length,
         i,j,temp;
     
@@ -97,10 +110,25 @@ export function insertionSort(arr) {
         arr[j] = temp;
     }
 
+=======
+    var len = arr.length,
+        temp,
+        j, i;
+    for (i = 1; i < len; i++) {
+        j = i;
+        temp = arr[i];
+        while (j > 0 && arr[j - 1] > temp) {
+            arr[j] = arr[j - 1];
+            j--;
+        }
+        arr[j] = temp;
+    }
+>>>>>>> ff92c372218ab35bd9f129cbccf87a6c295eddb2
     return arr;
 }
 
 
+<<<<<<< HEAD
 export function mergeSort(arr) {
     if (arr.length < 2){
         return arr;
@@ -231,6 +259,35 @@ export function heapSort(arr){
     return output;
 
 }
+=======
+// js implementation of merge sort
+function mergeSort(arr) {
+    if (arr.length < 2) {
+        return arr;
+    }
+    var midPoint = Math.floor(arr.length / 2);
+    var left = arr.slice(0, midPoint);
+    var right = arr.slice(midPoint);
+    return merge(mergeSort(left), mergeSort(right));
+
+    function merge(left, right) {
+        var out = [];
+        while (left.lenth && right.length) {
+            out.push(left[0] < right[0] ? left.shift() : right.shift())
+        }
+        while (left.length) {
+            out.push(left.shift());
+        }
+
+        while (right) {
+            out.push(right.shift());
+        }
+        return out;
+    }
+}
+
+
+>>>>>>> ff92c372218ab35bd9f129cbccf87a6c295eddb2
 
 var Stack = function(){
     var self = this;
