@@ -131,106 +131,6 @@ export function mergeSort(arr) {
     
 }
 
-
-//Min Heap
-export class MinIntHeap {
-
-    items = [];
-    size = 0;
-
-    constructor(){
-    }
-
-    getLeftChildIndex(parentIndex){ return 2 * parentIndex + 1}
-    getRightChildIndex(parentIndex){ return 2 * parentIndex + 2}
-    getParentIndex(childIndex){return (childIndex - 1) / 2 >>0}
-
-    hasLeftChild(index){return this.getLeftChildIndex(index) < this.size;}
-    hasRightChild(index){return this.getRightChildIndex(index) < this.size;}
-    hasParent(index){return this.getParentIndex(index) >= 0}
-
-    leftChild(index){return this.items[this.getLeftChildIndex(index)]}
-    rightChild(index){return this.items[this.getRightChildIndex(index)]}
-    parent(index){return this.items[this.getParentIndex(index)]}
-
-    swap(indexOne, indexTwo){
-        let temp = this.items[indexOne];
-        this.items[indexOne] = this.items[indexTwo];
-        this.items[indexTwo] = temp;
-    }
-
-    peek(){
-        if(this.size == 0) throw new Error('Empty Heap');
-        return this.items[0]
-    }
-
-    poll(){
-        if(this.size == 0) throw new Error('Empty Heap');
-
-        let item = this.items[0];
-        this.items[0] = this.items[this.size - 1];
-        this.size--;
-        this.heapifyDown();
-        return item;
-    }
-
-    add(item){
-        this.items[this.size] = item;
-        this.size++;
-        this.heapifyUp();
-    }
-
-    heapifyUp(){
-        let index = this.size - 1;
-        while(this.hasParent(index) && this.parent(index) > this.items[index]){
-            let parentIndex = this.getParentIndex(index);
-            this.swap(parentIndex, index);
-            index = parentIndex;
-        }
-    }
-
-    heapifyDown(){
-        let index = 0;
-        while(this.hasLeftChild(index)) {
-            let smallerChildIndex = this.getLeftChildIndex(index);
-
-            if(this.hasRightChild(index) && this.rightChild(index) < this.leftChild(index)){
-                smallerChildIndex = this.getRightChildIndex(index);
-            }
-
-            if (this.items[index] < this.items[smallerChildIndex]){
-                break;
-            } else {
-                this.swap(index, smallerChildIndex);
-            }
-            index = smallerChildIndex;
-        }
-    }
-}
-
-export function heapSort(arr){
-    if (arr.length <= 1) return arr;
-    let output = [];
-    let heap = new MinIntHeap();
-
-    const buildMinHeap = (arr, hrsp) => {
-        arr.forEach((val, idx)=>{
-            heap.add(val);
-        });
-
-        return heap;
-    }
-
-    buildMinHeap(arr, heap);
-
-    heap.items.forEach((val, idx) => {
-        output.push(heap.poll());
-    })
-
-    return output;
-
-}
-
 var Stack = function(){
     var self = this;
     self.data = [];
@@ -263,8 +163,6 @@ function GraphNode(val){
     this.player = null;
 }
 
-var player_one = 0;
-var player_two = 0;
 
 function DFS(starting_node) {
     var s = new Stack();
@@ -315,3 +213,104 @@ H.neighbors = [G,D,E,F,I];
 I.neighbors = [E,F,H];
 
 DFS(A);
+
+
+
+// heapSort using Min Int Heap 
+export function heapSort(arr){
+    if (arr.length <= 1) return arr;
+
+    
+    const buildMinHeap = () => {
+        let len = arr.length - 1;
+
+        for (let i = len ; i>0; i--){
+            heapifyUp(i);
+        }
+    }
+
+    const swap = (indexOne, indexTwo) => {
+        let temp = arr[indexOne];
+        arr[indexOne] = arr[indexTwo];
+        arr[indexTwo] = temp;
+    }
+
+    const hasParent = (index) => {
+        return index/2 > 0;
+    }
+
+    const hasLeftChild = (parentIndex) => {
+        return getLeftChildIndex(parentIndex) < arr.length;
+    }
+
+    const hasRightChild = (parentIndex) => {
+        return getRightChildIndex(parentIndex) < arr.length;
+    }
+
+    const getParentIndex = (childIndex) => {
+        return childIndex / 2 >> 0;
+    }
+
+    const getLeftChildIndex = (parentIndex) => {
+        return parentIndex * 2 + 1;
+    }
+
+    const getRightChildIndex = (parentIndex) => {
+        return parentIndex * 2 + 2;
+    }
+
+    const parent = (childIndex) => {
+        return arr[getParentIndex(childIndex)];
+    }
+
+    const leftChild = (parentIndex) => {
+        return arr[getLeftChildIndex(parentIndex)];
+    }
+
+    const rightChild = (parentIndex) => {
+        return arr[getRightChildIndex(parentIndex)];
+    }
+
+    const heapifyUp = (index) => {
+        while(hasParent(index) && arr[index] < parent(arr,index)){
+            swap(index, getParentIndex(index));
+            index = getParentIndex(index);
+        }
+    }
+
+    const heapifyDown = (arr) => {
+        if (arr.length < 2) return arr;
+        arr.unshift(arr.pop());
+        let index = 0;
+        while(hasLeftChild(index)) {
+            let smallerChildIndex = getLeftChildIndex(index);
+
+            if (hasRightChild(index) && rightChild(index) < leftChild(index) ) {
+                smallerChildIndex = getRightChildIndex(index);
+            }
+
+            if (arr[smallerChildIndex] > arr[index]) {
+                break;
+            } else {
+                swap(smallerChildIndex, index);
+            }
+
+            index = smallerChildIndex;
+        }
+    }
+
+    buildMinHeap(arr);
+ 
+    let output = [];
+    while(arr.length > 0) {
+        output.push(arr.shift());
+        heapifyDown(arr);
+    }
+
+    return output;
+}
+
+
+export function radixSort(arr) {
+    
+}
