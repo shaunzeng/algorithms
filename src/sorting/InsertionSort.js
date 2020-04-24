@@ -1,16 +1,28 @@
 export function InsertionSort(arr) {
-    let len = arr.length,
-        i, j, temp;
+    if (arr.length <= 1) return arr;
 
-    for (i = 1; i < len; i++) {
-        j = i;
-        temp = arr[i];
-        while (j > 0 && arr[j - 1] > temp) {
-            arr[j] = arr[j - 1];
-            j--;
+    let i = 1;
+    while (i < arr.length) {
+
+        let j = i - 1;
+
+        while (j >= 0) {
+
+            if (arr[j + 1] < arr[j]) {
+                swap(arr, j + 1, j);
+                j--;
+            } else {
+                break;
+            }
         }
-        arr[j] = temp;
-    }
 
+        i++;
+    }
     return arr;
+}
+
+function swap(arr, i, j) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
 }

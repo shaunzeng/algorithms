@@ -1,15 +1,6 @@
 export function HeapSort(arr) {
     if (arr.length <= 1) return arr;
 
-
-    const buildMinHeap = () => {
-        let len = arr.length - 1;
-
-        for (let i = len; i > 0; i--) {
-            heapifyUp(i);
-        }
-    }
-
     const swap = (indexOne, indexTwo) => {
         let temp = arr[indexOne];
         arr[indexOne] = arr[indexTwo];
@@ -52,41 +43,11 @@ export function HeapSort(arr) {
         return arr[getRightChildIndex(parentIndex)];
     }
 
-    const heapifyUp = (index) => {
-        while (hasParent(index) && arr[index] < parent(arr, index)) {
-            swap(index, getParentIndex(index));
-            index = getParentIndex(index);
-        }
+
+
+    const buildMaxHeap = () => {
+
     }
 
-    const heapifyDown = (arr) => {
-        if (arr.length < 2) return arr;
-        arr.unshift(arr.pop());
-        let index = 0;
-        while (hasLeftChild(index)) {
-            let smallerChildIndex = getLeftChildIndex(index);
 
-            if (hasRightChild(index) && rightChild(index) < leftChild(index)) {
-                smallerChildIndex = getRightChildIndex(index);
-            }
-
-            if (arr[smallerChildIndex] > arr[index]) {
-                break;
-            } else {
-                swap(smallerChildIndex, index);
-            }
-
-            index = smallerChildIndex;
-        }
-    }
-
-    buildMinHeap(arr);
-
-    let output = [];
-    while (arr.length > 0) {
-        output.push(arr.shift());
-        heapifyDown(arr);
-    }
-
-    return output;
 }

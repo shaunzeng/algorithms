@@ -1,1 +1,2 @@
-import { QuickSort } from './Sorting/QuickSort';
+import { InsertionSort } from './Sorting/InsertionSort';
+import { MergeSort } from './Sorting/MergeSort';
