@@ -1,21 +1,42 @@
 export function QuickSort(arr, low, high) {
-    if (items.length > 1) {
-        let pi = partition(arr, low, high);
+    if (low >= high) return;
 
-        if (low < pi - 1) {
-            QuickSort(arr, low, pi - 1);
-        }
+    let mid = partition(arr, low, high);
+    QuickSort(arr, low, mid - 1);
+    QuickSort(arr, mid + 1, high);
 
-        if (pi < high) {
-            QuickSort(arr, pi, high);
-        }
-    }
+    return arr;
 
-    return items;
 }
 
 function partition(arr, low, high) {
-    let pivot = arr[Math.floor]
+    let pivot = arr[low],
+        i = low,
+        j = high;
+
+    while (i < j) {
+
+        while (i < j && arr[j] >= pivot) {
+            j--;
+        }
+
+        if (i < j) {
+            swap(arr, i, j);
+            i++;
+        }
+
+        while (i < j && arr[i] <= pivot) {
+            i++;
+        }
+
+        if (i < j) {
+            swap(arr, i, j);
+            j--
+        }
+
+    }
+
+    return i;
 }
 
 function swap(arr, i, j) {
@@ -35,5 +56,3 @@ function swap(arr, i, j) {
 // 3. items to the right are larger
 
 //bad pivot : smallest item or largest item
-
-console.log(QuickSort([10, 80, 30, 70, 90, 40, 50, 70], 0, 7));

@@ -1,9 +1,23 @@
 export function BubbleSort(arr) {
 
-    for (let i = 0; i < arr.length; i++) {
+    if (arr.length < 2) return arr;
 
+    let flag = false;
+
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                flag = true;
+                swap(arr, j, j + 1);
+            }
+        }
+
+        if (flag == false) {
+            break;
+        }
     }
 
+    return arr;
 }
 
 function swap(arr, i, j) {
@@ -11,3 +25,5 @@ function swap(arr, i, j) {
     arr[i] = arr[j];
     arr[j] = temp;
 }
+
+///optimization add flag check if sorted
