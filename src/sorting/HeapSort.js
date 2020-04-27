@@ -11,9 +11,6 @@ export function HeapSort(arr) {
     for (let i = idx; i >= 0; i--) {
         heapify(arr, i, len);
     }
-    console.log('done : ', arr);
-    console.log(' ');
-
 
     // swap max node to the end and heaify every time there is a swap;
     for (let i = len - 1; i > 0; i--) {

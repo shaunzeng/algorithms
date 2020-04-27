@@ -1,4 +1,4 @@
-export function SelectionSort(arr, ascending) {
+export function SelectionSort(arr) {
     let len = arr.length,
         minIdx;
 
@@ -6,15 +6,11 @@ export function SelectionSort(arr, ascending) {
         minIdx = i;
 
         for (let j = i + 1; j < len; j++) {
-            if (!!ascending) {
-                if (arr[j] < arr[minIdx]) {
-                    minIdx = j;
-                }
-            } else {
-                if (arr[j] > arr[minIdx]) {
-                    minIdx = j;
-                }
+
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
             }
+
 
         }
 
