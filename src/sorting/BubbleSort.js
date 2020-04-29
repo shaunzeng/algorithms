@@ -26,4 +26,4 @@ function swap(arr, i, j) {
     arr[j] = temp;
 }
 
-///optimization add flag check if sorted
+///optimization add flag check if sorted, if its sorted we just have to run n times and check the flag;

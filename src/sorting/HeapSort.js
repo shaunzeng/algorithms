@@ -64,5 +64,3 @@ function getRightChildIndex(parentIndex) {
 // n + (n-1) + (n-2) + (n-3) .... 2 + 1
 
 // for (let 1 ; i< n i= i*2) time complexity : logn
-
-console.log(HeapSort([10, 80, 30, 70, 90, 40, 50, 70]));

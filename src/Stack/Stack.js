@@ -1,4 +1,4 @@
-var Stack = function() {
+function Stack() {
     var self = this;
     self.data = [];
     self.push = push;
