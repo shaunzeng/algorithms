@@ -1,4 +1,5 @@
 import { Stack } from '../Stack/Stack';
+import { lowestCommonAncestor } from './LowestCommonAncestor';
 
 export class Node {
     left;
@@ -104,6 +105,10 @@ export class BinaryTree {
             }
         }
     }
+
+    postOrder() {
+
+    }
 }
 
 let bt = new BinaryTree(new Node(56));
@@ -116,3 +121,5 @@ bt.root.right.left = new Node(77);
 bt.root.right.right = new Node(92);
 
 bt.preOrder(bt.root);
+
+console.log(lowestCommonAncestor(bt.root, 10, 92));

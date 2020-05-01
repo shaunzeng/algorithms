@@ -16,25 +16,36 @@ export class BinarySearchTree extends BinaryTree {
         }
 
         let curr = this.root;
-        let parent;
 
         while (true) {
-            parent = curr;
-            if (data <= curr.data) {
-                curr = curr.left;
 
-                if (!curr) {
-                    parent.left = n;
+            if (curr.data > data) {
+                if (curr.left) {
+                    curr = curr.left;
+                } else {
+                    curr.left = n;
                     break;
                 }
             } else {
-                curr = curr.right;
-
-                if (!curr) {
-                    parent.right = n;
+                if (curr.right) {
+                    curr = curr.right;
+                } else {
+                    curr.right = n;
                     break;
                 }
             }
+        }
+    }
+
+    access(node, data) {
+        if (!node) return null;
+
+        if (data === node.data) return node;
+
+        if (data > node.data) {
+            return this.access(node.right, data);
+        } else {
+            return this.access(node.right, data);
         }
     }
 
