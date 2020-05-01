@@ -1,19 +1,10 @@
-export function BinarySearch(arr, left, right, x) {
-    if (left <= right) {
-        let midn = left + (right - 1) / 2;
+// binary search to find index of a target value in an array of integers, the array is sorted
+function binarySearch(nums, startIdx, endIdx, target) {
+    if (startIdx > endIdx) return -1;
 
+    var midIdx = Math.floor((startIdx + endIdx) / 2);
 
-        if (arr[mid] === x) {
-            return mid;
-        }
-
-
-        if (arr[mid] > x) {
-            return BinarySearch(arr, left, mid - 1, x);
-        }
-
-        return BinarySearch(arr, mid + 1, right, x);
-    }
-
-    return -1;
+    if (target > nums[midIdx]) return binarySearch(nums, midIdx + 1, endIdx, target);
+    else if (target < nums[midIdx]) return binarySearch(nums, startIdx, midIdx - 1, target);
+    else return midIdx;
 }
