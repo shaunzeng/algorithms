@@ -1,4 +1,4 @@
-export function lowestCommonAncestor(tree, n1, n2) {
+export function LCA(tree, n1, n2) {
     let path1 = [];
     let path2 = [];
 

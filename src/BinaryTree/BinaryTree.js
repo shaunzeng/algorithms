@@ -1,5 +1,5 @@
 import { Stack } from '../Stack/Stack';
-import { lowestCommonAncestor } from './LowestCommonAncestor';
+import { LCA } from './LCA';
 
 export class Node {
     left;
@@ -17,7 +17,6 @@ export class BinaryTree {
     root;
 
     constructor(rootNode) {
-        if (rootNode === null) throw new Error('Root node is not defined');
         this.root = rootNode
     }
 
@@ -111,8 +110,8 @@ export class BinaryTree {
     }
 }
 
-let bt = new BinaryTree(new Node(56));
-
+let bt = new BinaryTree();
+bt.root = new Node(56)
 bt.root.left = new Node(22);
 bt.root.right = new Node(81);
 bt.root.left.left = new Node(10);
@@ -120,6 +119,5 @@ bt.root.left.right = new Node(30);
 bt.root.right.left = new Node(77);
 bt.root.right.right = new Node(92);
 
-bt.preOrder(bt.root);
 
-console.log(lowestCommonAncestor(bt.root, 10, 92));
+console.log(LCA(bt.root, 10, 92));

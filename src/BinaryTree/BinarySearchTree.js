@@ -52,7 +52,4 @@ export class BinarySearchTree extends BinaryTree {
     delete(data) {
 
     }
-
 }
-
-let bst = new BinarySearchTree(new Node(23, null, null));
