@@ -1,24 +1,51 @@
-function Stack() {
-    var self = this;
-    self.data = [];
-    self.push = push;
-    self.pop = pop;
-    self.peek = peek;
-    self.size = size;
+export class Stack {
 
-    function push(val) {
-        self.data.push(val);
+    _storage = [];
+    _pointer = -1;
+    _temp = 0;
+
+    push(data) {
+        this._storage.push(data);
+        this._pointer++;
     }
 
-    function pop() {
-        return self.data.pop();
+    pop() {
+        if (this._pointer >= 0) {
+            this._pointer--;
+            return this._storage.pop();
+        } else {
+            this._pointer = -1;
+        }
     }
 
-    function peek() {
-        return self.data[self.data.length - 1];
+    peek() {
+        if (this._pointer >= 0) {
+            this._temp = this._storage[this._pointer];
+            this._storage.pop();
+            this._pointer--;
+
+            return this._temp;
+        } else {
+            this._pointer = -1;
+        }
     }
 
-    function size() {
-        return self.data.length;
+    size() {
+        if (this._pointer >= 0) {
+            return (this._pointer + 1);
+        } else {
+            return 0;
+        }
+    }
+
+    clear() {
+        this._storage = [];
+        this._pointer = -1;
+    }
+
+    show() {
+        if (this._pointer >= 0) {
+            return this._storage[this._storage.length];
+        }
     }
 }

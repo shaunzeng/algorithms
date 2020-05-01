@@ -4,4 +4,5 @@ import { ShellSort } from './Sorting/ShellSort';
 import { BucketSort } from './Sorting/BucketSort';
 import { BubbleSort } from './Sorting/BubbleSort';
 import { HeapSort } from './Sorting/HeapSort';
+import { BinarySearchTree } from './BinaryTree/BinarySearchTree';
 import { BinaryTree } from './BinaryTree/BinaryTree';
