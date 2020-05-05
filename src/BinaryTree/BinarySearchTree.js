@@ -50,6 +50,7 @@ export class BinarySearchTree extends BinaryTree {
     }
 
     remove(data) {
+        //3 scenairos , leaf, one child, two children
         this.root = removeNode(this.root, data);
     }
 
@@ -85,6 +86,28 @@ export class BinarySearchTree extends BinaryTree {
         }
         return curr.data;
     }
+
+    getNodeCount() {
+        let size = 0;
+
+        preOrder(this.root, (n) => {
+            size++;
+        });
+
+        return size;
+    }
+
+    isInTree(data) {
+        let isIn = false;
+
+        preOrder(this.root, (n) => {
+            if (n.data === data) {
+                isIn = true;
+            }
+        });
+
+        return isIn;
+    }
 }
 
 function preOrder(node, fn) {
@@ -96,36 +119,64 @@ function preOrder(node, fn) {
 }
 
 function removeNode(node, data) {
-    if (node == null) {
-        return null;
-    }
+    if (!node) return null;
 
-    if (data == node.data) {
-        // has no children
-        if (node.left == null && node.right == null) {
+    // 3 scenarios, 
+    // 1) data equals node val (found to delete)
+    // 2) data is greater than node val, and
+    // 3) data is less than node val
+    // always return current node;
+
+    if (data === node.data) {
+        // break scenario 1 into 4 sub scenarios : 
+        // when no child, 
+        // when left child only, 
+        // when right child only, 
+        // when two children
+
+        if (!node.left && !node.right) {
+            // where there is no children, return null as current node should be null;
             return null;
         }
 
-        // has no left child
-        if (node.left == null) {
+        if (!node.left) {
+            // when there is right child only, return right child
             return node.right;
         }
 
-        // has no right child
-        if (node.right == null) {
+        if (!node.right) {
+            // when there is left child only, return left child;
             return node.left;
         }
 
-        // has two children
-        var tempNode = getSmallest(node.right);
-        node.data = tempNode.data;
-        node.right = removeNode(node.right, tempNode.data);
-        return node;
-    } else if (data < node.data) {
-        node.left = removeNode(node.left, data);
-        return node;
+        if (node.left && node.right) {
+            // when there are both children
+            // swap current node val with the smallest in the right subtree;
+            // then remove the smallest node recursively in the right subtree;
+            // return current node swapped
+
+            let tempNode = getSmallest(node.right);
+            node.data = tempNode.data;
+            node.right = removeNode(node.right, tempNode.data);
+            return node;
+        }
+
+    } else if (data > node.data) {
+
     } else {
-        node.right = removeNode(node.right, data);
-        return node;
+
     }
+
+}
+
+function getSmallest(node) {
+    while (true) {
+        if (node.left) {
+            node = node.left;
+        } else {
+            break;
+        }
+    }
+
+    return node;
 }
