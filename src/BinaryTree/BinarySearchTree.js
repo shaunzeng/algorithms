@@ -10,6 +10,7 @@ export class BinarySearchTree extends BinaryTree {
     insert(data) {
         let n = new Node(data, null, null);
 
+        // first check if root is null, if it is assign new node to root, and done;
         if (!this.root) {
             this.root = n;
             return;
@@ -19,7 +20,9 @@ export class BinarySearchTree extends BinaryTree {
 
         while (true) {
 
+
             if (curr.data > data) {
+                // find in left if data is less then current node data, till it finds the empty spot;
                 if (curr.left) {
                     curr = curr.left;
                 } else {
@@ -27,6 +30,7 @@ export class BinarySearchTree extends BinaryTree {
                     break;
                 }
             } else {
+                // find in right if data is greater then current node data, till it finds the empty spot;
                 if (curr.right) {
                     curr = curr.right;
                 } else {
@@ -162,9 +166,13 @@ function removeNode(node, data) {
         }
 
     } else if (data > node.data) {
-
+        // have not found the node to delete, search in the right subtree recursively
+        node.right = removeNode(node.right, data);
+        return node;
     } else {
-
+        // have not found the node to delete, search in the left subtree recursively
+        node.left = removeNode(node.left, data);
+        return node;
     }
 
 }

@@ -48,4 +48,8 @@ export class Stack {
             return this._storage[this._storage.length];
         }
     }
+
+    isEmpty() {
+        return this.size() === 0;
+    }
 }

@@ -1,3 +1,6 @@
+// find both paths from root to the nodes
+// compare both paths and find intersection
+// return the furthest intersection
 export function LCA(tree, n1, n2) {
     let path1 = [];
     let path2 = [];
@@ -7,6 +10,13 @@ export function LCA(tree, n1, n2) {
     return findCommonAncestor(path1, path2);
 }
 
+// pre order traversal pushes valid node at the beginning of recursion
+// return boolean value to determin whether to push to path or not
+// 3 scenarios : when node is the target node return true;
+//            or when node has left node , and recursive call returns true, meaning target node is in the left subtree
+//            or when node has right node, and recursive call returns true , meaning target node is in the right subtree
+// falsy scenarios: when node is null, or when truthy conditions dont meet, meaning target node is not in current subtree, 
+//                  pop the one already pushed, and return false;
 function findPath(node, data, path) {
     if (!node) return false;
 
@@ -34,3 +44,5 @@ function findCommonAncestor(path1, path2) {
 
     return ancestor;
 }
+
+// time complexity : o(n)
