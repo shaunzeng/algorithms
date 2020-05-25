@@ -9,7 +9,7 @@ export function InsertionSort(arr) {
         while (j >= 0) {
 
             if (arr[j + 1] < arr[j]) {
-                swap(arr, j + 1, j);
+                [arr[j], arr[j + 1]] = [arr[j + i], arr[j]];
                 j--;
             } else {
                 break;
@@ -19,10 +19,4 @@ export function InsertionSort(arr) {
         i++;
     }
     return arr;
-}
-
-function swap(arr, i, j) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
 }

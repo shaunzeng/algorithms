@@ -6,7 +6,7 @@ export function HeapSort(arr) {
 
     //build max heap
 
-    let idx = Math.floor(len / 2 - 1);
+    let idx = Math.floor(len / 2 - 1); // first element that has child / children
 
     for (let i = idx; i >= 0; i--) {
         heapify(arr, i, len);
@@ -14,7 +14,7 @@ export function HeapSort(arr) {
 
     // swap max node to the end and heaify every time there is a swap;
     for (let i = len - 1; i > 0; i--) {
-        swap(arr, 0, i);
+        [arr[0], arr[i]] = [arr[i], arr[0]];
         heapify(arr, 0, i);
     }
     return arr;
@@ -23,8 +23,8 @@ export function HeapSort(arr) {
 
 function heapify(arr, i, len) {
     let max = i,
-        left = getLeftChildIndex(i),
-        right = getRightChildIndex(i);
+        left = i * 2 + 1,
+        right = i * 2 + 2;
 
     if (left < len && arr[left] > arr[max]) {
         max = left;
@@ -37,24 +37,9 @@ function heapify(arr, i, len) {
 
 
     if (max !== i) {
-        swap(arr, i, max);
+        [arr[i], arr[max]] = [arr[max], arr[i]];
         heapify(arr, max, len);
     }
-}
-
-function swap(arr, i, j) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-}
-
-
-function getLeftChildIndex(parentIndex) {
-    return parentIndex * 2 + 1;
-}
-
-function getRightChildIndex(parentIndex) {
-    return parentIndex * 2 + 2;
 }
 
 

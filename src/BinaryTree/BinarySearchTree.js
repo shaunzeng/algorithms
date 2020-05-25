@@ -1,4 +1,4 @@
-import { BinaryTree, Node } from './BinaryTree';
+import { BinaryTree, TreeNode } from './BinaryTree';
 
 
 export class BinarySearchTree extends BinaryTree {
@@ -8,7 +8,7 @@ export class BinarySearchTree extends BinaryTree {
     }
 
     insert(data) {
-        let n = new Node(data, null, null);
+        let n = new TreeNode(data, null, null);
 
         // first check if root is null, if it is assign new node to root, and done;
         if (!this.root) {

@@ -1,3 +1,7 @@
+// goal is to move pivot to its right position from start index to end index
+// partition function moves the pivot to its right postion by swaping with smaller to its left, or bigger to its right
+// till it two pointers meet, which means it find the position for the pivot;
+
 export function QuickSort(arr, low, high) {
     if (low >= high) return;
 
@@ -21,8 +25,8 @@ function partition(arr, low, high) {
         }
 
         if (i < j) {
-            swap(arr, i, j);
-            i++;
+            [arr[i], arr[j]] = [arr[j], arr[i]]; // pivot is arr[j]
+            i++; // we have already compared arr[i] so no need to compare again;
         }
 
         while (i < j && arr[i] <= pivot) {
@@ -30,19 +34,13 @@ function partition(arr, low, high) {
         }
 
         if (i < j) {
-            swap(arr, i, j);
-            j--
+            [arr[i], arr[j]] = [arr[j], arr[i]]; // pivot is arr[i]
+            j--; // we have compared arr[j] no need to compare again;
         }
 
     }
 
     return i;
-}
-
-function swap(arr, i, j) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
 }
 
 // time complaxity : n logn 

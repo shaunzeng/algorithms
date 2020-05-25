@@ -15,15 +15,9 @@ export function SelectionSort(arr) {
         }
 
         if (minIdx !== i) {
-            swap(arr, i, minIdx);
+            [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
         }
     }
 
     return arr;
-}
-
-function swap(arr, i, j) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
 }

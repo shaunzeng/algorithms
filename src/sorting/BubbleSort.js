@@ -2,17 +2,17 @@ export function BubbleSort(arr) {
 
     if (arr.length < 2) return arr;
 
-    let flag = false;
+    let isSorted = true;
 
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
-                flag = true;
-                swap(arr, j, j + 1);
+                isSorted = false; // optimization: in case its sorted already , adding a flag to check if first loop everything is sorted
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
             }
         }
 
-        if (flag == false) {
+        if (isSorted) {
             break;
         }
     }
@@ -20,10 +20,6 @@ export function BubbleSort(arr) {
     return arr;
 }
 
-function swap(arr, i, j) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-}
+
 
 ///optimization add flag check if sorted, if its sorted we just have to run n times and check the flag;

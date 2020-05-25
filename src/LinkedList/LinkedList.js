@@ -7,7 +7,7 @@ class Node {
     }
 }
 
-export class LinkedList {
+class LinkedList {
     length = 0;
     head = null;
 
