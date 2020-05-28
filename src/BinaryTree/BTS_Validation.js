@@ -1,5 +1,8 @@
-//input node
-//output boolean
+/**
+ * @param {TreeNode} root
+ * @return boolean
+ */
+
 
 export function validateBST(root) {
     if (!root) return true;

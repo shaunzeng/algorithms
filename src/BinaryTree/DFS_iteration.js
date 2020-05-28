@@ -1,5 +1,30 @@
 import { Stack } from '../Stack/Stack';
-import { Queue } from '../Queue/Queue';
+
+export function preOrder(root) {
+    if (!root) return null;
+
+    let s = new Stack();
+    s.push(root);
+
+    while (s.size() !== 0) {
+        let node = s.pop();
+
+        console.log(node.data, ' pre order itr');
+
+        // store the right node first into the stack, to make sure the left gets popped first
+        if (node.right) {
+            s.push(node.right);
+        }
+
+
+        // store the left node after the right node
+        if (node.left) {
+            s.push(node.left);
+        }
+    }
+}
+
+
 
 export function inOrder(root) {
     if (!root) return null;
@@ -32,29 +57,7 @@ export function inOrder(root) {
     }
 }
 
-export function preOrder(root) {
-    if (!root) return null;
 
-    let s = new Stack();
-    s.push(root);
-
-    while (s.size() !== 0) {
-        let node = s.pop();
-
-        console.log(node.data, ' pre order itr');
-
-        // store the right node first into the stack, to make sure the left gets popped first
-        if (node.right) {
-            s.push(node.right);
-        }
-
-
-        // store the left node after the right node
-        if (node.left) {
-            s.push(node.left);
-        }
-    }
-}
 
 export function postOrder(root) {
     if (!root) return null;

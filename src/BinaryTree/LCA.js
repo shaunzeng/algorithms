@@ -45,4 +45,25 @@ function findCommonAncestor(path1, path2) {
     return ancestor;
 }
 
-// time complexity : o(n)
+// time complexity : o(n^2)
+
+
+export function lowestCommonAncestor(root, p, q) {
+    return dfs(root, p, q);
+};
+
+function dfs(node, p, q) {
+    if (!node) return null;
+
+    if (node == p || node == q) {
+        return node;
+    }
+
+    let leftResult = dfs(node.left, p, q);
+    let rightResult = dfs(node.right, p, q);
+
+    if (!leftResult) return rightResult;
+    if (!rightResult) return leftResult;
+
+    return node;
+}

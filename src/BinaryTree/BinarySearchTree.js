@@ -41,6 +41,20 @@ export class BinarySearchTree extends BinaryTree {
         }
     }
 
+    insertRecursion(node, newNode) {
+        if (!node) {
+            return newNode;
+        }
+
+        if (node.data > newNode) {
+            node.left = insertionRecursion(node.left, newNode);
+        } else {
+            node.right = insertionRecursion(node.right, newNode);
+        }
+
+        return node;
+    }
+
     access(node, data) {
         if (!node) return null;
 
