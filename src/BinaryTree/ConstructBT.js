@@ -21,7 +21,7 @@ function dfs(preorder, inorder) {
 
     // new left inorder is from left to the root index, not inclduing root index;
     let newLeftInd = ind.slice(0, rootIdxInInd);
-    // new right preorder is from 1 position to the length of left subtree, +1 is to include entire length;
+    // new left preorder is from 1 position to the length of left subtree, +1 is to include entire length;
     let newLeftPre = pre.slice(1, newLeftInd.length + 1);
 
     // new right inorder is from root index+1 to end
