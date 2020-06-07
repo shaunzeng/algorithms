@@ -16,6 +16,8 @@ bt.root.right.right = new TreeNode(92);
 
 bfs(bt.root);*/
 
+
+/*
 let g = new Node(0),
     g1 = new Node(1),
     g2 = new Node(2),
@@ -34,6 +36,7 @@ bfsGraph(g);
 console.log(' ');
 console.log(' ');
 dfsGraph(g);
+*/
 
 let t = new TreeNode(3),
     t1 = new TreeNode(9),

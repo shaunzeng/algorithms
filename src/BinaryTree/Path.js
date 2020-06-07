@@ -1,4 +1,4 @@
-export function findPath(root, target, path) {
+export function findPath(root, target) {
 
     let path = []; // global var that tracks path;
 
@@ -8,12 +8,15 @@ export function findPath(root, target, path) {
         path.push(node);
 
         if (node.data === target) return true;
-        if (node.left && find(node.left, target, path)) return true;
-        if (node.right && find(node.right, target, path)) return true;
+        if (node.left && find(node.left)) return true;
+        if (node.right && find(node.right)) return true;
 
         path.pop();
         return false;
     }
 
-    return find(root);
+    let result = find(root);
+
+    if (result) return path;
+    else return false;
 }

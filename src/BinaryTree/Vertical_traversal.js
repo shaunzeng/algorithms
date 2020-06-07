@@ -23,10 +23,32 @@ export function verticalOrder(root) {
         dfs(node.right, index + 1); // move col index to right
     }
 
-    dfs(root, 0);
+    dfs(root, 0); // find min col index and max col index;
 
+
+
+    // bfs
     let q = []; // queue
-    q.push(root);
+    q.push({ node: root, index: 0 });
 
-    console.log(min, max, max - min);
+
+    while (q.length !== 0) {
+        let { node, index } = q.shift();
+
+        let realIndex = index - min; // find the index offset
+
+        if (!ans[realIndex]) ans[realIndex] = []; // init that index positon in ans if its undefined
+
+        ans[realIndex].push(node.data);
+
+        if (node.left) {
+            q.push({ node: node.left, index: index - 1 }); // index -1 when read left child
+        }
+
+        if (node.right) {
+            q.push({ node: node.right, index: index + 1 }); // index +1 when read right child
+        }
+    }
+
+    return ans;
 }
