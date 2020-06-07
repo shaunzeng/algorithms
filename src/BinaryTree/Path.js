@@ -1,13 +1,19 @@
 export function findPath(root, target, path) {
-    if (!root) return false;
-    path.push(node);
 
-    if (node.data === target) return true;
-    if (node.left && findPath(node.left, target, path)) return true;
-    if (node.right && findPath(node.right, target, path)) return true;
+    let path = []; // global var that tracks path;
 
-    path.pop();
-    return false;
+    const find = (node) => {
+        if (!node) return false;
+
+        path.push(node);
+
+        if (node.data === target) return true;
+        if (node.left && find(node.left, target, path)) return true;
+        if (node.right && find(node.right, target, path)) return true;
+
+        path.pop();
+        return false;
+    }
+
+    return find(root);
 }
-
-let path = []; // global var that tracks path;

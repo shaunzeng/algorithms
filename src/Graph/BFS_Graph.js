@@ -24,6 +24,5 @@ export function bfsGraph(v, dict = {}) {
                 q.push(w);
             }
         }
-
     }
 }

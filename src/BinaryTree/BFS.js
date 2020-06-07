@@ -1,20 +1,18 @@
-import { Queue } from '../Queue/Queue';
-
 export function bfs(root) {
-    var q = new Queue;
-    q.enqueue(root);
+    var q = [];
+    q.push(root);
 
     while (q.size() !== 0) {
-        let node = q.dequeue();
+        let node = q.shift();
 
         console.log('node : ', node.data);
 
         if (node.left) {
-            q.enqueue(node.left);
+            q.push(node.left);
         }
 
         if (node.right) {
-            q.enqueue(node.right);
+            q.push(node.right);
         }
     }
 }

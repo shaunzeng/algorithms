@@ -1,4 +1,4 @@
-export function LCABinarySearchTree(node, n1, n2) {
+export function LCABSTIteration(node, n1, n2) {
 
     while (node) {
         if (node.data > n1 && node.data > n2) {
@@ -12,11 +12,11 @@ export function LCABinarySearchTree(node, n1, n2) {
 }
 
 //O(h) time complexity;
-export function lowestCommonAncestor(root, p, q) {
+export function LCABSTRecursion(root, p, q) {
     if (root.val > p.val && root.val > q.val) {
-        return lowestCommonAncestor(root.left, p, q);
+        return LCABSTRecursion(root.left, p, q);
     } else if (root.val < p.val && root.val < q.val) {
-        return lowestCommonAncestor(root.right, p, q);
+        return LCABSTRecursion(root.right, p, q);
     }
 
     return root;

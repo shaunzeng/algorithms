@@ -1,7 +1,8 @@
-import { BinaryTree, TreeNode } from './BinaryTree/BinaryTree';
-import { bfs } from './BinaryTree/BFS';
-
 import { Node, dfsGraph, bfsGraph } from './Graph';
+import { verticalOrder, TreeNode, BinaryTree, bfs } from './BinaryTree';
+
+
+
 /*
 let bt = new BinaryTree();
 bt.root = new TreeNode(56)
@@ -33,3 +34,16 @@ bfsGraph(g);
 console.log(' ');
 console.log(' ');
 dfsGraph(g);
+
+let t = new TreeNode(3),
+    t1 = new TreeNode(9),
+    t3 = new TreeNode(20),
+    t4 = new TreeNode(15),
+    t5 = new TreeNode(7);
+
+t.left = t1;
+t.right = t3;
+t3.left = t4;
+t3.right = t5;
+
+console.log(verticalOrder(t));
