@@ -8,15 +8,16 @@
 
 //explian 
 // start from the root, take every node as entry point to check for the linked listvar isSubPath = function(head, root) {
-if (!root) return false;
+var isSubPath = function(head, root) {
+    if (!root) return false;
 
-let result = dfs(root, head);
+    let result = dfs(root, head);
 
-if (result) {
-    return true;
-} else {
-    return isSubPath(head, root.left) || isSubPath(head, root.right);
-}
+    if (result) {
+        return true;
+    } else {
+        return isSubPath(head, root.left) || isSubPath(head, root.right);
+    }
 };
 
 
