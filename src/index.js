@@ -40,13 +40,17 @@ dfsGraph(g);
 
 let t = new TreeNode(3),
     t1 = new TreeNode(9),
-    t3 = new TreeNode(20),
-    t4 = new TreeNode(15),
-    t5 = new TreeNode(7);
+    t2 = new TreeNode(8),
+    t3 = new TreeNode(4),
+    t4 = new TreeNode(0),
+    t5 = new TreeNode(1),
+    t6 = new TreeNode(7);
 
 t.left = t1;
-t.right = t3;
-t3.left = t4;
-t3.right = t5;
+t.right = t2;
+t1.left = t3;
+t1.right = t4;
+t2.left = t5;
+t2.right = t6;
 
 console.log(verticalOrder(t));
