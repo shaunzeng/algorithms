@@ -31,6 +31,7 @@ var wiggleMaxLength = function(nums) {
             dpDown[i] = dpUp[i - 1] + 1;
             dpUp[i] = dpUp[i - 1];
         } else {
+            //when previous equals to current, no chang on both scenarios
             dpDown[i] = dpDown[i - 1];
             dpUp[i] = dpUp[i - 1];
         }
