@@ -2,6 +2,7 @@
  * @param {number[]} prices
  * @return {number}
  */
+// for this question, current state (dp[i]) is only determined directly by previous state (dp[i-1]);
 var maxProfit = function(prices) {
     // validate inputs
     if (!prices || prices.length == 0) return 0;

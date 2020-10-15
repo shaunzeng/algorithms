@@ -24,16 +24,19 @@ var wiggleMaxLength = function(nums) {
             // for dpDown[i], it stays the same max length as dpDown[i-1], no change in max length
             dpUp[i] = dpDown[i - 1] + 1;
             dpDown[i] = dpDown[i - 1];
+
         } else if (nums[i - 1] > nums[i]) {
             // when previous is greater than current , it means going down, 
             // we update dpDown[i] by getting previous max length of going up and plus 1;
             // for dpUp[i], it stays the same max length as dpUp[i-1], no change in max length
             dpDown[i] = dpUp[i - 1] + 1;
             dpUp[i] = dpUp[i - 1];
+
         } else {
             //when previous equals to current, no chang on both scenarios
             dpDown[i] = dpDown[i - 1];
             dpUp[i] = dpUp[i - 1];
+
         }
     }
 
