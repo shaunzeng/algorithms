@@ -3,31 +3,19 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    var dic = {};
-    var result = [];
 
-    for (var i = 0; i < strs.length; i++) {
-        var str = strs[i].split('').sort().join('');
 
-        if (dic[str] === void 0) {
-            dic[str] = [];
+    const dic = strs.reduce((d, item, i) => {
+        const str = item.split('').sort().join('');
+
+        if (!d[str]) {
+            d[str] = [];
         }
 
-        dic[str].push(i);
-    }
+        d[str].push(i);
 
-    for (var p in dic) {
-        if (dic.hasOwnProperty(p)) {
-            var arr = dic[p],
-                toPush = [];
+        return d;
+    }, {});
 
-            for (var i = 0; i < arr.length; i++) {
-                toPush.push(strs[arr[i]]);
-            }
-
-            result.push(toPush);
-        }
-    }
-
-    return result;
+    return Object.values(dic).map(segment => segment.map(s => strs[s]));
 };

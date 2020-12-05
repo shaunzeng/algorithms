@@ -16,6 +16,7 @@ var twoSum = function(nums, target) {
 
         if (dic[remain] !== void 0) {
             ans = [dic[remain], i];
+            break;
         } else {
             dic[curr] = i;
         }
