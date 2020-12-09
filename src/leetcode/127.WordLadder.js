@@ -4,20 +4,30 @@
  * @param {string[]} wordList
  * @return {number}
  */
+
+/* solution (DFS)
+1. add start word in a queue
+2. pop last in the queue, and find words in the wordList that can be made by changing one letter
+3. found all words and add to the queue, one step means one search for all the words found
+4, repeat 2 and 3 till you find end word, while u checking words in the wordlist, delete the one that was found and added to the queue, to avoid going backwards
+5, if u run out of words in the list, return 0.
+
+*/
 var ladderLength = function(beginWord, endWord, wordList) {
 
-    const dic = wordList.reduce((acct, word) => {
-        acct[word] = true;
-        return acct;
-    }, {}); // convert word list to a dictionary
+    const words = new Set(wordList);
 
-    if (!dic[endWord]) return 0; // if end word is not in dictionary, means not possible
+    if (!words.has(endWord)) return 0; // if end word is not in dictionary, means not possible
 
 
+    return bfs(beginWord, endWord, words);
+};
+
+function bfs(begin, end, words) {
     let s = [],
         steps = 0;
 
-    s.push(beginWord);
+    s.push(begin);
 
     while (s.length !== 0) {
 
@@ -26,28 +36,27 @@ var ladderLength = function(beginWord, endWord, wordList) {
 
         for (let i = 0; i < size; i++) {
             const curr = s.shift(), // get current word
-                possibleNodes = getPossibleNodes(curr, dic); // find words that possbly can change to 
+                possibleNodes = getPossibleNodes(curr, words); // find words that possbly can change to 
 
 
-            if (possibleNodes.indexOf(endWord) !== -1) return steps + 1; // see if end word is inside the possible change, if yes, return the steps+1;
+            if (possibleNodes.findIndex(end) !== -1) return steps + 1; // see if end word is inside the possible change, if yes, return the steps+1;
             s = [...s, ...possibleNodes]; // or add the possible words to queue
 
         }
     }
 
     return 0;
-};
+}
 
-function getPossibleNodes(curr, dic) {
+function getPossibleNodes(curr, words) {
     let len = curr.length,
         collection = [];
     for (let i = 0; i < len; i++) {
         for (var j = 'a'.charCodeAt(0); j <= 'z'.charCodeAt(0); j++) {
             // check each character of the word, and change with other 25 characters;
-            let copy = curr;
-            copy = copy.replaceAt(i, String.fromCharCode(j));
+            let newWord = replaceAt(curr, i, String.fromCharCode(j));
 
-            if (dic[copy]) {
+            if (words.has(newWord)) {
                 // when found one in dictionary, add to possible words to chganeg to 
                 collection.push(copy);
                 delete dic[copy] // delete that word in dictionary to avoid duplicates
@@ -59,6 +68,6 @@ function getPossibleNodes(curr, dic) {
     return collection;
 }
 
-String.prototype.replaceAt = function(index, replacement) {
-    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+function replaceAt(word, i, replacement) {
+    return word.substring(0, i) + replacement + word.substr(i + 1, word.length);
 }
