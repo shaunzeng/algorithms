@@ -3,9 +3,6 @@
  * @return {number[][]}
  */
 
-//把matrix转换成 距离matrix,因为要找出所有点跟最近0的距离，
-//实际上是找所有1跟最近的0的距离，0到0的距离是0，所以不用考虑
-//又实际上我们要看0到1的距离
 var updateMatrix = function(matrix) {
     if (!matrix || matrix.length == 0) return [];
 
@@ -42,7 +39,7 @@ var updateMatrix = function(matrix) {
             let x = item[0] + dir[i][0],
                 y = item[1] + dir[i][1];
 
-            // if new position is out of the matrix, or if its 0, we ignore it
+            // if the new position is outside the matrix, or if its 0, we ignore it
             if (x < 0 || y < 0 || x >= rows || y >= cols) continue;
 
             // compare the new positon distance with curr spot distance + 1;
