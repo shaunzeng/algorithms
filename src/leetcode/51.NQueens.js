@@ -4,14 +4,8 @@
  */
 var solveNQueens = function(n) {
 
-    var solutions = [];
-    var grid = [];
-    for (var i = 0; i < n; i++) {
-        grid[i] = [];
-        for (var j = 0; j < n; j++) {
-            grid[i][j] = '.';
-        }
-    }
+    const solutions = [];
+    const grid = Arra.from(new Array(n), () => new Array(n).fill('.');)
 
     solveProblem(grid, 0, n, solutions);
 
@@ -19,6 +13,7 @@ var solveNQueens = function(n) {
 };
 
 function solveProblem(grid, row, n, solutions) {
+
     if (row === n) {
         solutions.push(mergeArray(grid));
         return;
