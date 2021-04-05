@@ -3,6 +3,7 @@
  * @return {number}
  */
 // bfs to find steps, then sum up all steps token
+// step 1, sort all points so we know for each step, we start from what point and end at what point
 var cutOffTree = function(forest) {
     if (!forest || forest.length === 0) return -1;
 
@@ -28,7 +29,7 @@ var cutOffTree = function(forest) {
             endY = curr[1],
             steps = bfs(forest, startX, startY, endX, endY); // calculate steps needed from start point to end point
 
-        if (steps < 0) return -1;
+        if (steps < 0) return -1; // if we fail to go from start to end point, return -1
 
         total_steps += steps;
 
@@ -52,14 +53,14 @@ function bfs(forest, x0, y0, x1, y1) {
             [0, -1]
         ];
 
-    q.push([x0, y0, 0]);
+    q.push([x0, y0, 0]); // 3rd value is the steps
     visited.add('' + x0 + y0);
 
     while (q.length !== 0) {
 
         const curr = q.shift();
 
-        if (curr[0] === x1 && curr[1] === y1) return curr[2];
+        if (curr[0] === x1 && curr[1] === y1) return curr[2]; // if we found the target point, return the steps value
 
         for (let i = 0; i < 4; i++) {
             let newX = curr[0] + dir[i][0],
@@ -73,9 +74,9 @@ function bfs(forest, x0, y0, x1, y1) {
                 visited.has('' + newX + newY)) continue;
 
             visited.add('' + curr[0] + curr[1]);
-            q.push([newX, newY, curr[2] + 1]);
+            q.push([newX, newY, curr[2] + 1]); // increment steps by adding 1 on the steps value
         }
     }
 
-    return -1;
+    return -1; // if target point is not found, return -1
 }
