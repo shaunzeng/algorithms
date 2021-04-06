@@ -4,7 +4,6 @@
  */
 var romanToInt = function(s) {
     if (!s) return 0;
-
     const map = {
         "I": 1,
         "IV": 4,
@@ -20,16 +19,13 @@ var romanToInt = function(s) {
         "CM": 900,
         "M": 1000
     }
-
     let ans = 0,
         i = 0;
-
     while (i < s.length) {
         const curr = s[i],
             value = map[curr],
             next = s[i + 1] || null,
             nextValue = next ? map[next] : null;
-
         if (nextValue !== null && value >= nextValue) {
             ans = ans + value;
             i++;
@@ -41,6 +37,5 @@ var romanToInt = function(s) {
             i++;
         }
     }
-
     return ans;
 };

@@ -3,22 +3,11 @@
  * @param {number} k
  * @return {string[]}
  */
-var topKFrequent = function(words, k) {
-
-    if (!words || words.length === 0) return [];
-
-    const mappings = {};
-
-    for (let i = 0; i < words.length; i++) {
-        mappings[words[i]] = mappings[words[i]] + 1 || 1
-    }
-
-    const sorted = Object.keys(mappings).sort((a, b) => {
-        if (mappings[b] === mappings[a]) {
-            return a > b ? 1 : -1
-        }
-        return mappings[b] - mappings[a]
-    });
-
-    return sorted.slice(0, k)
+var topKFrequent = function(nums, k) {
+    if (!nums || nums.length == 0) return [];
+    const dic = nums.reduce((acct, curr, i) => {
+        acct[curr] = acct[curr] === void 0 ? 1 : acct[curr] + 1;
+        return acct;
+    }, {});
+    return Object.keys(dic).sort((a, b) => dic[b] - dic[a]).slice(0, k);
 };

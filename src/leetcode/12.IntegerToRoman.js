@@ -3,7 +3,6 @@
  * @return {string}
  */
 var intToRoman = function(num) {
-
     const mapping = [
         [1000, 'M'],
         [900, 'CM'],
@@ -19,20 +18,15 @@ var intToRoman = function(num) {
         [4, 'IV'],
         [1, 'I']
     ];
-
     let ans = '';
-
     for (let i = 0; i < mapping.length && num > 0; i++) {
         const curr = mapping[i],
             value = curr[0],
             symbol = curr[1];
-
         while (value <= num) {
             num -= value;
             ans += symbol;
         }
     }
-
     return ans;
-
 };

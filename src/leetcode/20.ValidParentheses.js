@@ -2,22 +2,24 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-    var brackets = '(){}[]<>';
-    var stack = [];
-
-    for (var i = 0; i < s.length; i++) {
-        var position = brackets.indexOf(s[i]);
-
-        if (position % 2 === 0) {
+var isValidParenthese = function(s) {
+    if (!s || s.length === 0) return true;
+    let stack = [],
+        i = 0;
+    while (i < s.length) {
+        if (s[i] === '(' || s[i] === '[' || s[i] === '{') {
             stack.push(s[i]);
-        } else {
-            var el = stack.pop();
-            if (brackets[position - 1] != el) {
-                return false;
-            }
+        } else if (s[i] === ')') {
+            if (stack[stack.length - 1] !== '(') return false;
+            stack.pop();
+        } else if (s[i] === ']') {
+            if (stack[stack.length - 1] !== '[') return false;
+            stack.pop();
+        } else if (s[i] === '}') {
+            if (stack[stack.length - 1] !== '{') return false;
+            stack.pop();
         }
+        i++;
     }
-
-    return !stack.length;
+    return stack.length === 0 ? true : false;
 };

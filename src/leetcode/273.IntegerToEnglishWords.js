@@ -4,41 +4,26 @@
  */
 var numberToWords = function(num) {
     if (num === 0) return 'Zero';
-
     let billion = Math.floor(num / 1000000000),
         million = Math.floor((num - billion * 1000000000) / 1000000),
         thousand = Math.floor((num - billion * 1000000000 - million * 1000000) / 1000),
         rest = num - billion * 1000000000 - million * 1000000 - thousand * 1000,
         result = '';
-
-
     if (billion !== 0) {
         result = three(billion) + ' Billion';
     }
-
     if (million !== 0) {
-        if (result !== '') {
-            result += ' ';
-        }
-
+        if (result !== '') { result += ' '; }
         result += three(million) + ' Million';
     }
-
     if (thousand !== 0) {
-        if (result !== '') {
-            result += ' ';
-        }
-
+        if (result !== '') { result += ' '; }
         result += three(thousand) + ' Thousand';
     }
-
     if (rest !== 0) {
-        if (result !== '') {
-            result += ' ';
-        }
+        if (result !== '') { result += ' '; }
         result += three(rest);
     }
-
     return result
 };
 
@@ -119,7 +104,6 @@ function three(num) {
     let hundred = Math.floor(num / 100),
         rest = num - hundred * 100,
         result = '';
-
     if (hundred * rest !== 0) {
         result = one(hundred) + ' Hundred ' + two(rest);
     } else if (hundred === 0 && rest !== 0) {
@@ -130,7 +114,6 @@ function three(num) {
 
     return result;
 }
-
 
 function two(num) {
     if (num === 0) return '';

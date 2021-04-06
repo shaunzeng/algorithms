@@ -5,9 +5,8 @@
 //transpose then reverse
 var rotate = function(matrix) {
     if (!matrix || matrix.length == 0) return [];
-
     let n = matrix.length;
-
+    // flop diagnaly 
     for (let i = 0; i < n; i++) {
         for (let j = i; j < n; j++) {
             let tmp = matrix[i][j];
@@ -15,7 +14,7 @@ var rotate = function(matrix) {
             matrix[j][i] = tmp;
         }
     }
-
+    // flop horizontaly
     for (let i = 0; i < n; i++) {
         for (j = 0; j < n / 2; j++) {
             let tmp = matrix[i][j];
@@ -23,6 +22,5 @@ var rotate = function(matrix) {
             matrix[i][n - j - 1] = tmp
         }
     }
-
     return matrix;
 };
