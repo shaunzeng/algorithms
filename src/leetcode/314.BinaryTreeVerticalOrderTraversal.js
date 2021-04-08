@@ -6,7 +6,20 @@
 // have a global min, max colIndex;
 // each time you loop thru children, update the min and max col index;
 // dfs find min and max col index, then we use bfs to traverse and put node into cols accordingly;
-export function verticalOrder(root) {
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var verticalOrder = function(root) {
+    if (!root) return [];
 
     let min = 0,
         max = 0,
@@ -37,9 +50,9 @@ export function verticalOrder(root) {
 
         let realIndex = index - min; // find the index offset
 
-        if (!ans[realIndex]) ans[realIndex] = []; // init that index positon in ans if its undefined
+        ans[realIndex] = ans[realIndex] || []; // init that index positon in ans if its undefined
 
-        ans[realIndex].push(node.data);
+        ans[realIndex].push(node.val);
 
         if (node.left) {
             q.push({ node: node.left, index: index - 1 }); // index -1 when read left child
