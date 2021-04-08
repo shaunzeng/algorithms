@@ -1,3 +1,0 @@
-var reverseLinkedList = function(node) {
-
-}
