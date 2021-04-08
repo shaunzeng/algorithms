@@ -13,10 +13,7 @@
 var mergeTwoLists = function(l1, l2) {
     if (!l1) return l2;
     if (!l2) return l1;
-
     var head, prev;;
-
-
     while (l1 && l2) {
         if (l1.val < l2.val) {
             if (!head) {
@@ -40,12 +37,10 @@ var mergeTwoLists = function(l1, l2) {
             }
         }
     }
-
     if (l1) {
         prev.next = l1;
     } else if (l2) {
         prev.next = l2;
     }
-
     return head;
 };

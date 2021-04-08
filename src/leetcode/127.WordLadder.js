@@ -14,37 +14,30 @@
 
 */
 var ladderLength = function(beginWord, endWord, wordList) {
-
     const words = new Set(wordList);
-
     if (!words.has(endWord)) return 0; // if end word is not in dictionary, means not possible
-
-
     return bfs(beginWord, endWord, words);
 };
 
 function bfs(begin, end, words) {
     let s = [],
         steps = 0;
-
     s.push(begin);
-
     while (s.length !== 0) {
-
-        steps++; // increment steps count
-        const size = s.length; // get size of current steps
-
+        // increment steps count
+        steps++;
+        // get size of current steps
+        const size = s.length;
         for (let i = 0; i < size; i++) {
-            const curr = s.shift(), // get current word
-                possibleNodes = getPossibleNodes(curr, words); // find words that possbly can change to 
-
-
-            if (possibleNodes.findIndex(end) !== -1) return steps + 1; // see if end word is inside the possible change, if yes, return the steps+1;
+            // get current word
+            const curr = s.shift();
+            // find words that possbly can change to
+            const possibleNodes = getPossibleNodes(curr, words);
+            // see if end word is inside the possible change, if yes, return the steps+1;
+            if (possibleNodes.findIndex(end) !== -1) return steps + 1;
             s = [...s, ...possibleNodes]; // or add the possible words to queue
-
         }
     }
-
     return 0;
 }
 
@@ -64,7 +57,6 @@ function getPossibleNodes(curr, words) {
 
         }
     }
-
     return collection;
 }
 
