@@ -4,7 +4,7 @@
  */
 var solveNQueens = function(n) {
     const solutions = [];
-    const grid = Arra.from(new Array(n), () => new Array(n).fill('.');)
+    const grid = Arra.from(new Array(n), () => new Array(n).fill('.'));
     solveProblem(grid, 0, n, solutions);
     return solutions;
 };

@@ -71,7 +71,6 @@ MedianFinder.prototype.findMedian = function() {
 
             return (this.list[idx] + this.list[idx + 1]) / 2;
         } else {
-
             return this.list[idx]
         }
     }
